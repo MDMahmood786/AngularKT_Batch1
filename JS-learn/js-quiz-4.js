@@ -5,6 +5,7 @@ function Person(name,age) {
     this.age = age;
    
     var self = this;
+    
     setInterval(function () { 
         self.age++;
         console.log(self.age);

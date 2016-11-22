@@ -160,3 +160,89 @@ when invoking any function ,
 new-context will get created which is child of above context. 
 --------------------------------------------------------    
 
+
+
+JS is
+
+     --> single-threaded lang
+
+     but supports
+
+     --> better concurrency
+     --> non-blocking IO
+
+------------------------------------     
+
+
+e,g chrome browser
+
+1. JS-engine ( v8 )
+
+   call-stack  : to execute contexts
+   heap        : to keep objects
+
+2. APIs ( e.g DOM , XHR , Timer , etc... )
+
+3. callback-queue/message-queue
+
+4. Event-Loop   
+
+
+--------------------------------------
+
+
+e.g-1
+
+function f(b){
+  var a = 12;
+  return a+b+35;
+}
+
+function g(x){
+  var m = 4;
+  return f(m*x);
+}
+
+g(21);
+
+
+
+
+ex-2
+
+
+function foo(){
+  throw new Error('oops');
+}
+
+function bar(){
+foo();
+}
+
+function baz(){
+bar();
+}
+baz();
+
+
+
+ex-3
+
+function f1(){
+
+let i=0;
+while(i<5){
+  // heavy task...
+  console.log('hungry...');
+  i++;
+}
+
+}
+
+function f2(){
+  console.log('simple work...");
+}
+
+
+f1();
+f2();
