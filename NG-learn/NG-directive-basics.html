@@ -19,7 +19,6 @@
             <hr/>
             <div class="my-hello-world"></div>
             <hr/>
-            <!-- directive: my-hello-world-->
 
     </div>
 
@@ -31,9 +30,10 @@
 
        mod.directive('myHelloWorld',function(){
            return{
-               restrict:'AECM',
+               restrict:'AEC',
                replace:true,
-               template:'<h4>Angular World</h4>'
+               //template:'<h4>Angular World</h4>',
+               templateUrl:'templates/hello-world.html'
            };
        });
 
