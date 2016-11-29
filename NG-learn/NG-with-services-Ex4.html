@@ -7,7 +7,7 @@
 
 <body class="container">
 
-    <div class="page-header"> NG-with-services-Ex1.html </div>
+    <div class="page-header"> NG-with-services-Ex3.html </div>
 
     <div ng-app="demo">
 
@@ -32,9 +32,8 @@
     <script>
         var mod=angular.module('demo',[]);
 
-        mod.config(function(countServiceProvider){
+        mod.config(function(Auth_Key){
             console.log('demo module config phase...');
-            countServiceProvider.setInitialCount(100);
         });
 
         mod.controller('HitController',function($scope,countService){
@@ -56,31 +55,30 @@
             };
         })
 
+            var o={
+                    count:0,
+                    doCount:function(){
+                        this.count++;
+                    },
+                    getCount:function(){
+                        return this.count;
+                    }
+                };
 
-        mod.provider('countService',function(){
-            console.log('countServiceProvider instance created...');
-            
-            //var count=0;
-            this.count=0;
+        // mod.factory('countService',function(){
+        //      console.log('countService instance created...');
+        //      return o;
+        // });
 
-            this.setInitialCount=function(initialCount){
-                this.count=initialCount;
-            }
 
-            var self=this;
-            this.$get=function(){
-                 console.log('countService instance created...');
-                 var service={
-                     doCount:function(){
-                         self.count++;
-                     },
-                     getCount:function(){
-                         return self.count;
-                     }
-                 };
-                 return service;
-            }
-        });
+        mod.value('countService',o);
+
+
+        var tnr={name:'Nag',doTeach:function(){}};
+        mod.value('tnrService',tnr);
+
+
+        mod.constant('Auth_Key','dbxjnbdhj34b4j35n634234dfgdfgdfg');
 
     </script>
 

@@ -7,7 +7,7 @@
 
 <body class="container">
 
-    <div class="page-header"> NG-with-services-Ex1.html </div>
+    <div class="page-header"> NG-with-services-Ex3.html  </div>
 
     <div ng-app="demo">
 
@@ -32,9 +32,8 @@
     <script>
         var mod=angular.module('demo',[]);
 
-        mod.config(function(countServiceProvider){
+        mod.config(function(){
             console.log('demo module config phase...');
-            countServiceProvider.setInitialCount(100);
         });
 
         mod.controller('HitController',function($scope,countService){
@@ -56,31 +55,21 @@
             };
         })
 
-
-        mod.provider('countService',function(){
-            console.log('countServiceProvider instance created...');
-            
-            //var count=0;
+        function Counter(){
             this.count=0;
-
-            this.setInitialCount=function(initialCount){
-                this.count=initialCount;
+            this.doCount=function(){
+                this.count++;
             }
-
-            var self=this;
-            this.$get=function(){
-                 console.log('countService instance created...');
-                 var service={
-                     doCount:function(){
-                         self.count++;
-                     },
-                     getCount:function(){
-                         return self.count;
-                     }
-                 };
-                 return service;
+            this.getCount=function(){
+                return this.count;
             }
-        });
+        }
+
+        // mod.factory('countService',function(){
+        //      console.log('countService instance created...');
+        //      return new Counter();
+        // });
+        mod.service('countService',Counter);
 
     </script>
 
