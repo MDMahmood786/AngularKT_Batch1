@@ -9,6 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://user1:user1@ds119788.mlab.com:19788/cts-pm');
+
 var app = express();
 
 // view engine setup
